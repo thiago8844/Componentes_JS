@@ -1,22 +1,49 @@
 "use strict";
 
-//Accordion
 function accordion() {
-  const accordion = document.querySelector(".accordion-container");
-
-  accordion.addEventListener("click", function (e) {
-    const clicado = e.target.closest(".accordion-title");
-
-    //Guard Clause
+  const accordion_container = document.querySelector(".accordion-container");
+  //Delegação de eventos
+  accordion_container.addEventListener("click", function (e) {
+   
+    //Pega quem foi clicado
+    const clicado = e.target.closest(".accordion-header");
+    
+    //Retorna se o clicado não for o header
     if (!clicado) return;
 
-    clicado.classList.toggle("active");
+    //Seleciona o conteudo do accordion clicado
+    const conteudo = clicado
+      .closest(".accordion-item")
+      .querySelector(".accordion-content");
+    //Seleciona a seta do accordion clicado
+    const seta = clicado
+      .closest(".accordion-item")
+      .querySelector(".icon-accordion");
+
+    console.log(clicado.style);
+
+    if (getComputedStyle(conteudo).maxHeight === "0px") {
+      conteudo.style.maxHeight = conteudo.scrollHeight + "px";
+      clicado.style.borderBottomLeftRadius = "0";
+      clicado.style.borderBottomRightRadius = "0";
+
+      if (seta.classList.contains("rotate-back"))
+        seta.classList.remove("rotate-back");
+
+      seta.classList.add("rotate");
+    } else {
+      conteudo.style.maxHeight = "0";
+      clicado.style.borderBottomLeftRadius = "5px";
+      clicado.style.borderBottomRightRadius = "5px";
+
+      if (seta.classList.contains("rotate")) seta.classList.remove("rotate");
+      seta.classList.add("rotate-back");
+    }
   });
 }
 
 //Hamburguer
 function hamburguerMenu(elAbre) {
-  
   //Variáveis
   const pushMenu = document.querySelector(".navigation");
   const btnFechar = document.querySelector(".fecha-push-menu");
@@ -34,19 +61,17 @@ function hamburguerMenu(elAbre) {
     }, 1);
 
     //Seta os eventos de fechamento
-    //Event listener para fechar o menu
+    //Event listener for closing the menu
     document.body.addEventListener("click", function (e) {
       if (e.target === btnFechar || e.target === blur) {
-        
         pushMenu.style.transform = "translateX(-100%)";
-        
+
         blur.style.opacity = 0;
         //Seta um timeout pra ele sair bonitinho
         setTimeout(() => {
           blur.remove();
         }, 200);
-        
-      };
+      }
     });
   }
 
@@ -57,31 +82,90 @@ function hamburguerMenu(elAbre) {
 
 //Footer invertido
 function footerInv() {
+  /* 
+    Decidi não delegar os eventos nos radios para manter o código mais organizado. Já que cada radio vai ter um comportamento específico é melhor criar um event listener para cada um do que delegar.
+  */
 
-  const checkInv = document.querySelector(".switch input");
+  const radioNormal = document.querySelector("#footer-normal");
+  const radioFooterInv1 = document.querySelector("#footer-inv1");
+  const radioFooterInv2 = document.querySelector("#footer-inv2");
+
   const footer = document.querySelector(".footer-section footer");
-  const embaixo = document.querySelector(".embaixo");
+  const secaoFooter = document.querySelector(".footer-section");
+  const topoFooter = document.querySelector(".topo-footer");
+  const madeirinha = document.querySelector(".madeirinha");
 
+  // Footer normal
+  radioNormal.addEventListener("change", function () {
+    if (madeirinha.classList.contains("madeirinha-active"))
+      madeirinha.classList.remove("madeirinha-active");
 
-  checkInv.addEventListener("click", function(e) {
-    
-    
-    if(this.checked) {
-      console.log("ativou vdd")
-      footer.style.position = "fixed";
-      embaixo.style.marginBottom = "600px";
-    }else {
-      console.log("ativou fls")
-      footer.style.position = "initial";
-      embaixo.style.marginBottom = "0";
-    }
+    footer.style.position = "static";
+    secaoFooter.style.marginBottom = "0";
   });
 
+  // Footer Invertido 1 (madeirinha em cima)
+  radioFooterInv1.addEventListener("change", function () {
+    if (madeirinha.classList.contains("madeirinha-active"))
+      madeirinha.classList.remove("madeirinha-active");
+    //Seta as opções desse footer
+    footer.style.position = "fixed";
+    footer.style.bottom = "0px";
+    secaoFooter.style.marginBottom = "600px";
+  });
+
+  // Footer Invertido 2 (Madeirinha embaixo)
+  radioFooterInv2.addEventListener("change", function () {
+    //Seta as opções desse footer
+    footer.style.position = "fixed";
+    footer.style.bottom = "150px";
+    secaoFooter.style.marginBottom = "750px";
+
+    //Callback OBserver
+    const callBackObs = (entries, observer) => {
+      //Guard Clause *Para caso a opção footer 2 não esteja checada
+      if (!radioFooterInv2.checked) return;
+
+      const [entry] = entries;
+
+      // Ativa a madeirinha
+      if (entry.target === madeirinha && entry.isIntersecting) {
+        madeirinha.classList.add("madeirinha-active");
+      }
+
+      // Desativa a madeirinha
+      if (
+        entry.target === topoFooter &&
+        entry.boundingClientRect.top > 100 &&
+        !entry.isIntersecting
+      ) {
+        madeirinha.classList.remove("madeirinha-active");
+      }
+    };
+
+    //Observer da madeirinha
+    const obsMadeirinha = new IntersectionObserver(callBackObs, {
+      root: null,
+      threshold: 1,
+      // rootMargin: "-20px",
+    });
+
+    //Observer do topo-footer
+    const obsTopoFooter = new IntersectionObserver(callBackObs, {
+      root: null,
+      threshold: 1,
+      rootMargin: "0px 0px -150px 0px",
+    });
+
+    // Faz as duas instâncias do observer verificar a interseção desses elementos
+    obsMadeirinha.observe(madeirinha);
+    obsTopoFooter.observe(topoFooter);
+  });
 }
+
 // Código principal
 const hamburguer = document.querySelector(".hamburguer");
 
-
 hamburguerMenu(hamburguer);
 accordion();
-footerInv()
+footerInv();
