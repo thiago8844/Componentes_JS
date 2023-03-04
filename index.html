@@ -8,19 +8,22 @@
     <link rel="stylesheet" href="css/hamburguer-menu.css" />
     <link rel="stylesheet" href="css/accordion.css" />
     <link rel="stylesheet" href="css/footer.css" />
-
+    <link rel="stylesheet" href="css/menu.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 
       * {
+        list-style: none;
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        list-style: none;
-      } 
+      }
 
       :root {
-        --transition-time: 0.4s;
+        --transition-time: 0.5s;
+        --cor-menu: #ff4800;
+        --cor-primaria: #f9fff4;
+        --cor-hover: #ffda60;
       }
 
       body {
@@ -47,7 +50,7 @@
       </button>
 
       <!-- Push Menu -->
-      <div class="navigation">
+      <!-- <div class="navigation">
         <nav class="push-menu">
           <h2>
             CLEITINHO
@@ -73,143 +76,53 @@
             <li><a href="">DEP 4</a></li>
           </ul>
         </nav>
+      </div> -->
+
+      <div class="push-menu-container">
+        <div class="area-logo">
+          <h2>Tech Star</h2>
+          <button id="fecha-menu">X</button>
+        </div>
+
+        <button class="btn-montepc">Monte seu PC</button>
+
+        <!-- Dropdown -->
+        <ul class="dropdown-hamburguer">
+          <li><a>DEPARTAMENTO 1</a> <button>jjj</button></li>
+          <ul class="sub_m s1">
+            <li><a href="">sub dep 1</a></li>
+            <li><a href="">sub dep 2</a></li>
+            <li><a href="">sub dep 3</a></li>
+          </ul>
+          <li>DEPARTAMENTO 2</li>
+          <ul class="sub_m s2">
+            <li><a href=""> sub dep 1</a></li>
+            <ul class="sub_m_2">
+              <li><a href="">sub sub menu 1</a></li>
+              <li><a href=""> sub sub menu 2</a></li>
+            </ul>
+            <li><a href=""> sub dep 2</a></li>
+            <li><a href=""> sub dep 3</a></li>
+            <li><a href=""> sub dep 4</a></li>
+            <li><a href=""> sub dep 5</a></li>
+            <li><a href=""> sub dep 6</a></li>
+            
+          </ul>
+          
+          <li>DEPARTAMENTO 3</li>
+          <li>DEPARTAMENTO 4</li>
+          <li>DEPARTAMENTO 5</li>
+          <li>DEPARTAMENTO 6</li>
+          <li>DEPARTAMENTO 7</li>
+          <li>DEPARTAMENTO 8</li>
+        </ul>
       </div>
-
-      <!-- Accordion 1
-      <div class="accordion-container">
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-title"><h2>Batata</h2></div>
-          <div class="accordion-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet vero
-            quaerat doloremque eum ea similique, voluptas illum necessitatibus,
-            reiciendis enim vitae. Error illum nostrum voluptates, totam libero
-            dolore laudantium eos repellendus soluta, veritatis qui eveniet
-            laboriosam officiis doloribus sint deleniti. Molestiae est
-            consequatur atque quas, beatae animi modi accusantium error neque
-            ullam nulla. Obcaecati molestiae voluptatum eligendi fuga, laborum
-            rem!
-          </div>
-        </div>
-        </div>
-      -->
 
       <!-- Accordion 2-->
       <div class="accordion-container">
         <div class="accordion-item">
           <div class="accordion-header">
-            <span> TÍTULO </span>
+            <span> ACCORDION 1 </span>
             <div class="icon-accordion">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -229,7 +142,7 @@
 
           <div class="accordion-content">
             <div class="painel">
-              <h3>BATATA 1</h3>
+              <h3>BATATA I</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit
                 aperiam earum modi! Totam at eligendi ea hic et rerum quod sint
@@ -247,7 +160,7 @@
 
         <div class="accordion-item">
           <div class="accordion-header">
-            <span> TÍTULO </span>
+            <span> ACCORDION 2 </span>
             <div class="icon-accordion">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -267,7 +180,7 @@
 
           <div class="accordion-content">
             <div class="painel">
-              <h3>BATATA 1</h3>
+              <h3>CEBOLA II</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit
                 aperiam earum modi! Totam at eligendi ea hic et rerum quod sint
@@ -285,7 +198,7 @@
 
         <div class="accordion-item">
           <div class="accordion-header">
-            <span> TÍTULO </span>
+            <span> ACCORDION 3 </span>
             <div class="icon-accordion">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -305,7 +218,7 @@
 
           <div class="accordion-content">
             <div class="painel">
-              <h3>BATATA 1</h3>
+              <h3>CENOURA III</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit
                 aperiam earum modi! Totam at eligendi ea hic et rerum quod sint
@@ -323,7 +236,7 @@
 
         <div class="accordion-item">
           <div class="accordion-header">
-            <span> TÍTULO </span>
+            <span> ACCORDION 4 </span>
             <div class="icon-accordion">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -343,7 +256,7 @@
 
           <div class="accordion-content">
             <div class="painel">
-              <h3>BATATA 1</h3>
+              <h3>PEPINO IV</h3>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit
                 aperiam earum modi! Totam at eligendi ea hic et rerum quod sint
@@ -360,15 +273,52 @@
         </div>
       </div>
 
-      
-      <!-- Switch-->
-      <!-- <section class="switch-section">
-        <label class="switch">
-          <input  type="checkbox" name="switch" />
-          <span class="slider"></span>
-        </label>
-        <h2>Ativar footer invertido</h2>
-      </section> -->
+      <!-- MENU site -->
+      <div class="nav-menu"></div>
+
+      <!-- MINI menu -->
+      <div class="container-menuzinho">
+        <ul class="mini-menu">
+          <li>
+            <a href="#">OPCAO 1 v</a>
+            <ul class="sub-menu">
+              <li><a href="">sub-opcao 1</a></li>
+              <li><a href="">sub-opcao 2</a></li>
+              <li><a href="">sub-opcao 3</a></li>
+              <li><a href="">sub-opcao 4</a></li>
+              <li>
+                <a href="">sub-opcao 5 ></a>
+                <ul class="sub-menu__2">
+                  <li><a href="">sub-sub-opcao 1</a></li>
+                  <li><a href="">sub-sub-opcao 2</a></li>
+                  <li><a href="">sub-sub-opcao 3</a></li>
+                </ul>
+              </li>
+              <li><a href="">sub-opcao 6</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="">OPCAO 2 v</a>
+            <ul class="sub-menu">
+              <li><a href=""> sub 1</a></li>
+              <li><a href=""> sub 2</a></li>
+              <li><a href=""> sub 3</a></li>
+            </ul>
+          </li>
+
+          <li><a href="">OPCAO 3</a></li>
+
+          <li>
+            <a href="">OPCAO 4 v</a>
+            <ul class="sub-menu">
+              <li><a href=""> sub-opcao 1</a></li>
+              <li><a href=""> sub-opcao 2</a></li>
+              <li><a href=""> sub-opcao 3</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
 
       <!-- RADIO -->
       <form action="" class="radio-form">

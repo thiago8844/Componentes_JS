@@ -63,6 +63,7 @@
   align-items: center;
   color: white;
   font-size: 18px;
+  
   transition: border-radius var(--transition-time) ease-out;
 
   border-top-left-radius: 5px;

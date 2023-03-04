@@ -1,13 +1,18 @@
 "use strict";
 
+/* 
+NOTAS:
+
+TOGGLE DE CLASSLIST E NÚMERO É MIL VEZES MELHOR QUE STYLE
+*/
+
 function accordion() {
   const accordion_container = document.querySelector(".accordion-container");
-  //Delegação de eventos
+
   accordion_container.addEventListener("click", function (e) {
-   
     //Pega quem foi clicado
     const clicado = e.target.closest(".accordion-header");
-    
+
     //Retorna se o clicado não for o header
     if (!clicado) return;
 
@@ -19,8 +24,6 @@ function accordion() {
     const seta = clicado
       .closest(".accordion-item")
       .querySelector(".icon-accordion");
-
-    console.log(clicado.style);
 
     if (getComputedStyle(conteudo).maxHeight === "0px") {
       conteudo.style.maxHeight = conteudo.scrollHeight + "px";
@@ -80,7 +83,66 @@ function hamburguerMenu(elAbre) {
   });
 }
 
-//Footer invertido
+//Hamburguer2
+function hamburguerMenuOficial() {
+  //Abre e fecha o menu
+  function menuContainer() {
+    const menuHamburguer = document.querySelector(".push-menu-container");
+
+    const elAbre = document.querySelector(".hamburguer");
+    const fechaMenu = document.querySelector("#fecha-menu");
+
+    let c = 0;
+    function mudaMenu() {
+      // Usa impar par pra abrir o menu mesmo foda-se
+      if (!c) {
+        menuHamburguer.style.transform = "translateX(0)";
+        document.body.insertAdjacentHTML(
+          "afterbegin",
+          `<div id="blur"> </div>`
+        );
+        c = 1;
+      } else {
+        menuHamburguer.style.transform = "translateX(-100%)";
+        document.querySelector("#blur").remove();
+        c = 0;
+      }
+    }
+
+    elAbre.addEventListener("click", mudaMenu);
+    fechaMenu.addEventListener("click", mudaMenu);
+    document.body.addEventListener("click", function (e) {
+      if (e.target === document.querySelector("#blur")) mudaMenu();
+    });
+  }
+
+  function dropdownHanburguer() {
+    const dropdownContainer = document.querySelector(".dropdown-hamburguer");
+
+    dropdownContainer.addEventListener("click", function (e) {
+      const clicado = e.target.closest("li");
+
+      const subMenu = clicado.nextElementSibling;
+      //Retorna caso não haja um sub menu
+      if (!subMenu.classList.contains("sub_m")) return;
+
+      if (!subMenu.classList.contains("active")) {
+        subMenu.classList.add("active");
+        subMenu.style.height = subMenu.scrollHeight +  "px";
+      } else {
+        subMenu.classList.remove("active");
+        subMenu.style.height = "0px";
+
+      }
+
+    });
+  }
+
+  //Principal
+  menuContainer();
+  dropdownHanburguer();
+}
+
 function footerInv() {
   /* 
     Decidi não delegar os eventos nos radios para manter o código mais organizado. Já que cada radio vai ter um comportamento específico é melhor criar um event listener para cada um do que delegar.
@@ -163,9 +225,11 @@ function footerInv() {
   });
 }
 
+//MenuBar
+
 // Código principal
 const hamburguer = document.querySelector(".hamburguer");
 
-hamburguerMenu(hamburguer);
 accordion();
 footerInv();
+hamburguerMenuOficial();
