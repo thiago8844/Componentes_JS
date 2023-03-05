@@ -46,6 +46,7 @@ function accordion() {
 }
 
 //Hamburguer
+/*
 function hamburguerMenu(elAbre) {
   //Variáveis
   const pushMenu = document.querySelector(".navigation");
@@ -82,6 +83,7 @@ function hamburguerMenu(elAbre) {
     abreMenu(true);
   });
 }
+*/
 
 //Hamburguer2
 function hamburguerMenuOficial() {
@@ -123,19 +125,54 @@ function hamburguerMenuOficial() {
       const clicado = e.target.closest("li");
 
       const subMenu = clicado.nextElementSibling;
+      const menuPai = subMenu.parentNode;
       //Retorna caso não haja um sub menu
       if (!subMenu.classList.contains("sub_m")) return;
 
+      //Ativa o submenu
       if (!subMenu.classList.contains("active")) {
         subMenu.classList.add("active");
+        clicado.classList.add("active");
         subMenu.style.height = subMenu.scrollHeight +  "px";
-      } else {
-        subMenu.classList.remove("active");
-        subMenu.style.height = "0px";
+        
+        //Faz com que o menu pai não tenha mais uma height fixa
+        
+        menuPai.style.height = "auto";
+      } 
+      //Desativa o submenu
+      else {
+        
+        const fechaSubMenu = (sm) => {
+          sm.classList.remove("active");
+          clicado.classList.remove("active");
+          
+          //Reajusta a altura do elemento para um valor fixo para que a animação ocorra normalmente
+          subMenu.style.height = subMenu.scrollHeight +  "px";
+          setTimeout(() => {
+                      
+          sm.style.height = "0px";
+          
+          }, 10);
+
+
+
+        }
+
+        fechaSubMenu(subMenu); //Fecha o menu clicado
+
+        //Fecha os submenus dos submenus que podem ter ficado abertos
+        const [...filhosSubMenu] = subMenu.children
+
+        filhosSubMenu.forEach((el) => {
+          if(el.classList.contains("sub_m")) {
+            fechaSubMenu(el);
+          }
+        });
 
       }
-
     });
+
+
   }
 
   //Principal
