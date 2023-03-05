@@ -45,46 +45,6 @@ function accordion() {
   });
 }
 
-//Hamburguer
-/*
-function hamburguerMenu(elAbre) {
-  //Variáveis
-  const pushMenu = document.querySelector(".navigation");
-  const btnFechar = document.querySelector(".fecha-push-menu");
-
-  //Função abre menu
-  function abreMenu(bl) {
-    //Quando cr
-    pushMenu.style.transform = "translateX(0)";
-    document.body.insertAdjacentHTML("afterbegin", `<div class="blur"> </div>`);
-    const blur = document.querySelector(".blur");
-
-    // Seta um timeout pra entrar bonitinho
-    setTimeout(() => {
-      blur.style.opacity = 1;
-    }, 1);
-
-    //Seta os eventos de fechamento
-    //Event listener for closing the menu
-    document.body.addEventListener("click", function (e) {
-      if (e.target === btnFechar || e.target === blur) {
-        pushMenu.style.transform = "translateX(-100%)";
-
-        blur.style.opacity = 0;
-        //Seta um timeout pra ele sair bonitinho
-        setTimeout(() => {
-          blur.remove();
-        }, 200);
-      }
-    });
-  }
-
-  elAbre.addEventListener("click", function () {
-    abreMenu(true);
-  });
-}
-*/
-
 //Hamburguer2
 function hamburguerMenuOficial() {
   //Abre e fecha o menu
@@ -99,6 +59,8 @@ function hamburguerMenuOficial() {
       // Usa impar par pra abrir o menu mesmo foda-se
       if (!c) {
         menuHamburguer.style.transform = "translateX(0)";
+        document.body.style.overflow = "hidden";
+
         document.body.insertAdjacentHTML(
           "afterbegin",
           `<div id="blur"> </div>`
@@ -106,6 +68,7 @@ function hamburguerMenuOficial() {
         c = 1;
       } else {
         menuHamburguer.style.transform = "translateX(-100%)";
+        document.body.style.overflow = "auto";
         document.querySelector("#blur").remove();
         c = 0;
       }
@@ -136,8 +99,8 @@ function hamburguerMenuOficial() {
         subMenu.style.height = subMenu.scrollHeight +  "px";
         
         //Faz com que o menu pai não tenha mais uma height fixa
-        
         menuPai.style.height = "auto";
+        console.log("Ativou");
       } 
       //Desativa o submenu
       else {
@@ -151,6 +114,7 @@ function hamburguerMenuOficial() {
           setTimeout(() => {
                       
           sm.style.height = "0px";
+    
           
           }, 10);
 
